@@ -1,0 +1,22 @@
+<div class="panel panel-info">
+  <div class="panel-heading">Ajouter un produit : </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label>Description</label>
+      <input  [(ngModel)]="prod1.description" class="form-control" type="text"   >
+    </div>
+    <div class="form-group">
+      <label>Prix</label>
+      <input  [(ngModel)]="prod1.prix" class="form-control" type="text"   >
+    </div>
+    <div class="form-group">
+      <label>Categorie</label>
+      <select [(ngModel)]="prod1.id_categorie" class="form-control">
+        <option *ngFor="let c of listecat" value="{{c.id}}">{{c.description}}</option>
+      </select>
+
+    </div>
+
+    <button class="btn btn-primary"  (click)="ajouterproduit()" >Enregistrer</button>
+  </div>
+</div>
