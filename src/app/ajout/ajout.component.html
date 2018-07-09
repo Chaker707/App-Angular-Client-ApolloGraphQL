@@ -12,7 +12,9 @@
     <div class="form-group">
       <label>Categorie</label>
       <select [(ngModel)]="prod1.id_categorie" class="form-control">
-        <option *ngFor="let c of listecat" value="{{c.id}}">{{c.description}}</option>
+        <ng-container *ngIf="listecat">
+        <option *ngFor="let c of listecat.getAllcategorie" value="{{c.id}}">{{c.description}}</option>
+       </ng-container>
       </select>
 
     </div>

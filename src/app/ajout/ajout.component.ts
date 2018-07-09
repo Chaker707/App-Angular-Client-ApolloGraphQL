@@ -10,7 +10,6 @@ interface Produit1 {
   description: string;
   prix: number;
   idcat: number;
-
 }
 
 @Component({
@@ -25,24 +24,36 @@ export class AjoutComponent implements OnInit {
   }
 
   prod1 = {  description: '' ,  prix : 0 ,     id_categorie : 1   };
+
   listecat: any;
 
-  ngOnInit() {
+  cat_req= gql`
+              query qq{
+              getAllcategorie{
+                id
+                description
+              }
+            }
+           `;
 
+    add_req= gql`
+                  mutation ajouter1($desc: String!, $prix: Float!, $idcat: ID!){
+                    addProduit(description:$desc,prix: $prix, categorie: $idcat){
+                      id
+                      description
+                  }
+                }
+            `;
+
+  ngOnInit() {
+    /// charger la liste des categories dans la select
     this.apollo
       .query({
-        query: gql`
-         query qq{
-          getAllcategorie{
-            id
-            description
-          }
-        }
-        `,
+        query: this.cat_req,
       })
       .subscribe(data => {
-        console.log(data.data.getAllcategorie);
-        this.listecat = data.data.getAllcategorie;
+       console.log(data.data);
+        this.listecat = data.data;
       });
 
   }
@@ -50,14 +61,7 @@ export class AjoutComponent implements OnInit {
   ajouterproduit() {
     this.apollo.mutate({
       variables: { desc: this.prod1.description, prix: this.prod1.prix, idcat: this.prod1.id_categorie },
-      mutation:  gql`
-          mutation ajouter1($desc: String!, $prix: Float!, $idcat: ID!){
-            addProduit(description:$desc,prix: $prix, categorie: $idcat){
-              id
-              description
-          }
-        }
-       `,
+      mutation:  this.add_req,
     }).subscribe( data => {
       console.log(data);
       this.route.navigate(['liste']);

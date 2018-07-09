@@ -7,8 +7,8 @@
       </thead>
       <tbody>
 
-      <ng-container  *ngIf="produits">    
-      <tr *ngFor="let p of produits.getAllProduit">
+      <ng-container  *ngIf="produits">
+      <tr *ngFor="let p of produits.getAllProduitByCat">
         <td>{{p.id}}</td>
         <td>{{p.description}}</td>
         <td>{{p.prix}}</td>
@@ -16,7 +16,7 @@
           <a (click)="deleteproduit1(p.id)">
             <span class="glyphicon glyphicon-trash"></span>
           </a>
-        </td>     
+        </td>
       </tr>
       </ng-container>
       </tbody>

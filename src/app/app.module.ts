@@ -16,10 +16,12 @@ import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {FormsModule} from '@angular/forms';
+import { CategoriesComponent } from './categories/categories.component';
 
 
 const mesRoutes: Routes = [
   { path : 'liste' , component: ListeComponent },
+  { path : 'categories/:id' , component:CategoriesComponent },
   { path : 'ajout', component: AjoutComponent },
   { path: '' , redirectTo : '/liste', pathMatch: 'full' }
 ];
@@ -29,7 +31,8 @@ const mesRoutes: Routes = [
     AppComponent,
     Page1Component,
     ListeComponent,
-    AjoutComponent
+    AjoutComponent,
+    CategoriesComponent
 
   ],
   imports: [

@@ -26,11 +26,15 @@
 <div class="container">
   <div class="row" style="margin-top: 80px;">
     <div class="col-md-3">
-      <div class="list-group">
-        <a href="" class="list-group-item active"> Tous les Produits </a>
-        <a href="" class="list-group-item "> Lien1</a>
-        <a href="" class="list-group-item "> Lien1</a>
-      </div>
+      <div class="list-group" >
+
+        <a  routerLink="/liste"  class="list-group-item active"> Tous les Produits </a>
+        <ng-container *ngIf="categories">
+          <a *ngFor="let c of categories.getAllcategorie "  routerLink="/categories/{{c.id}}"
+            class="list-group-item "> {{c.description}}</a>
+        </ng-container>
+
+     </div>
     </div>
     <div class="col-md-9">
       <router-outlet></router-outlet>
